@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_noob/home/home_body_cards.dart';
 import 'package:flutter_noob/models/User.dart';
 
 class HomeBody extends StatefulWidget {
@@ -7,37 +8,46 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
-
-  List<User> users = [
-    User(id: 1, name: 'user1', status: false),
-    User(id: 2, name: 'user2', status: true),
-    User(id: 3, name: 'user3', status: true),
-    User(id: 4, name: 'user3', status: false),
-  ];
+  List<User> users = [];
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Column(children: users.map((user) => this.userCards(user)).toList()));
-  }
-
-  Widget userCards(User user) {
-    return Card(
-      margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
-      color: Colors.blue,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Text(
-              '${user.id} - ${user.name}',
-              style: TextStyle(fontSize: 20.0, fontFamily: 'Roboto'),
-              textAlign: TextAlign.center,
+    return Column(
+      children: <Widget>[
+        Center(child:
+          Column(children: users.map((user) => UserCards(user)).toList())),
+          SizedBox(height: 20.0),
+          Center(
+            child: Row(
+              children: <Widget>[
+                FloatingActionButton(
+                  onPressed: () => addUser(),
+                  child: Icon(Icons.add),
+                  splashColor: Colors.blueGrey,
+                ),
+                SizedBox(width: 20.0),
+                FloatingActionButton(
+                  onPressed: () => removeUser(),
+                  child: Icon(Icons.remove),
+                  splashColor: Colors.redAccent,
+                ),
+              ],
             ),
-          )
-        ],
-      ),
+          ),
+      ],
     );
   }
 
+  addUser() {
+    int id = this.users.length + 1;
+    if (id <=6 ) {
+      setState(() => {this.users.add(User(id: id, name: 'USER$id'))});
+    }
+  }
+
+  removeUser() {
+    if (users.length != 0) {
+      setState(() => this.users.removeLast());
+    }
+  }
 }
