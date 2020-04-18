@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_noob/models/User.dart';
 
 class HomeBody extends StatefulWidget {
   @override
@@ -6,28 +7,37 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
-  int count = 0;
+
+  List<User> users = [
+    User(id: 1, name: 'user1', status: false),
+    User(id: 2, name: 'user2', status: true),
+    User(id: 3, name: 'user3', status: true),
+    User(id: 4, name: 'user3', status: false),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Center(child: Column(children: users.map((user) => this.userCards(user)).toList()));
+  }
+
+  Widget userCards(User user) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+      color: Colors.blue,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          SizedBox(height: 20.0),
-          FloatingActionButton(
-            onPressed: () => buttonClick(),
-            child: Icon(Icons.add),
-            splashColor: Colors.blueGrey,
-          ),
-          SizedBox(height: 30.0),
-          Text('You clicked $count times.', style: TextStyle(fontFamily: 'ComicNeue', fontSize: 20.0)),
+          Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Text(
+              '${user.id} - ${user.name}',
+              style: TextStyle(fontSize: 20.0, fontFamily: 'Roboto'),
+              textAlign: TextAlign.center,
+            ),
+          )
         ],
       ),
     );
-  }
-
-  buttonClick() {
-    setState(() => {this.count += 1});
   }
 
 }
