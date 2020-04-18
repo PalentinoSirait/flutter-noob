@@ -12,18 +12,14 @@ class Home extends StatelessWidget {
         title: Text(this.appTitle, style: TextStyle(fontFamily: this.appFonts)),
         centerTitle: true,
         backgroundColor: Colors.blueGrey[500],
+        elevation: 0.0,
       ),
-      body: HomeBody(),
-      floatingActionButton: FloatingActionButton(
-        child: Text('click', style: TextStyle(fontFamily: this.appFonts)),
-        backgroundColor: Colors.blueGrey[600],
-        onPressed: () => buttonClick(),
+      body: Container(
+        color: Colors.grey[400],
+        padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
+        child: HomeBody()
       ),
     );
-  }
-
-  void buttonClick() {
-    print('Button clicked.');
   }
 
 }
