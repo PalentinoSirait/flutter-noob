@@ -17,21 +17,29 @@ class InputTransactionCard extends StatelessWidget {
               TextField(
                 decoration: InputDecoration(labelText: 'Transaction Title'),
                 controller: titleController,
-                onChanged: (value) => {},
+                onSubmitted: (_) => submit()
               ),
               TextField(
                 decoration: InputDecoration(labelText: 'Amount'),
                 controller: amountController,
-                onChanged: (value) => {},
+                keyboardType: TextInputType.number,
+                onSubmitted: (_) => submit()
               ),
               FlatButton(
                 color: Colors.blueGrey,
                 textColor: Colors.greenAccent,
                 child: Text('Add Transaction'),
-                onPressed: () => addTransaction(titleController.text, int.parse(amountController.text))
+                onPressed: submit
               )
             ],
           ),
         ));
+  }
+
+  void submit() {
+    final title = titleController.text;
+    final amount = int.parse(amountController.text);
+    if (title.isEmpty || amount <= 0) return;
+    addTransaction(title, amount);
   }
 }

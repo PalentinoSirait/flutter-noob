@@ -23,14 +23,14 @@ class _TransactionsState extends State<Transactions> {
         InputTransactionCard(addNewTransaction),
         Container(
           height: 400,
-          child: ListView(children: _transactions.map((trx) => TransactionCard(trx)).toList()),
-        ),
-      ],
+          child: ListView.builder(
+              itemCount: _transactions.length,
+              itemBuilder: (context, i) => TransactionCard(_transactions[i])))
+      ]
     );
   }
 
   void addNewTransaction(String title, int value) {
-    print(title + value.toString());
     setState(() {
       _transactions.add(Transaction(id: 'x', title: title, value: value, time: DateTime.now()));
     });
