@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class InputTransactionCard extends StatelessWidget {
+  InputTransactionCard(this.addTransaction);
+  final Function addTransaction;
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
@@ -26,7 +28,7 @@ class InputTransactionCard extends StatelessWidget {
                 color: Colors.blueGrey,
                 textColor: Colors.greenAccent,
                 child: Text('Add Transaction'),
-                onPressed: () {},
+                onPressed: () => addTransaction(titleController.text, int.parse(amountController.text))
               )
             ],
           ),

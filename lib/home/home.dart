@@ -13,19 +13,21 @@ class Home extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.blueGrey[500],
       ),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Card(
-              elevation: 5,
-              child: Container(
-                  child: Text('CHART'),
-                  width: double.infinity,
-                  color: Colors.blueGrey),
-            ),
-            Transactions(),
-          ]),
+      body: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Card(
+                elevation: 5,
+                child: Container(
+                    child: Text('CHART'),
+                    width: double.infinity,
+                    color: Colors.blueGrey),
+              ),
+              Transactions(),
+            ]),
+      )
     );
   }
 }
