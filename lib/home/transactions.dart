@@ -21,7 +21,10 @@ class _TransactionsState extends State<Transactions> {
     return Column(
       children: <Widget>[
         InputTransactionCard(addNewTransaction),
-        Column(children: _transactions.map((trx) => TransactionCard(trx)).toList())
+        Container(
+          height: 400,
+          child: ListView(children: _transactions.map((trx) => TransactionCard(trx)).toList()),
+        ),
       ],
     );
   }
